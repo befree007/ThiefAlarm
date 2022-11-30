@@ -8,13 +8,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _moveSpeed;
 
-    // Start is called before the first frame update
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Move();
