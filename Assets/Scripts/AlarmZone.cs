@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AlarmZone : MonoBehaviour
 {   
     [SerializeField] private float _maxVolume;
     [SerializeField] private float _timeOfIncrease;
     private AudioSource _audioSource;
-    private float _runningTime;
     private float _volumeScale;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();        
     }
@@ -19,7 +19,6 @@ public class AlarmZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _maxVolume = 1;
-        _runningTime = 0;
         StartCoroutine(ChangeVolume());
         Debug.Log("Entered2D");
     }
@@ -27,11 +26,10 @@ public class AlarmZone : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _maxVolume = 0;
-        _runningTime = 0;
         Debug.Log("Exit2D");
     }
 
-    private void RepetCoroutine()
+    private void LoopCoroutine()
     {
         if (_audioSource.volume == 0)
         {
@@ -45,14 +43,13 @@ public class AlarmZone : MonoBehaviour
 
     private IEnumerator ChangeVolume()
     {
-        _runningTime += Time.deltaTime;
-        _volumeScale = _runningTime / _timeOfIncrease;
+        _volumeScale += Time.deltaTime / _timeOfIncrease;
 
         _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _maxVolume, _volumeScale);
         Debug.Log("WORK");
         yield return null;
 
-        RepetCoroutine();
+        LoopCoroutine();
     }
 }
 
