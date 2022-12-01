@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2047fe896f3f2a24b95e3554fc824d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alarm: {fileID: 1843920732}
 --- !u!114 &1843920732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5041f39426cbd2540a3c0763d88f0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeOfIncrease: 500
+  _timeOfIncrease: 5
 --- !u!1001 &1368510039227620496
 PrefabInstance:
   m_ObjectHideFlags: 0
